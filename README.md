@@ -1,6 +1,6 @@
-## Openshift Origin as docker container on Fedora
+# Openshift Origin as docker container on Fedora
 
-### Prerequisites
+## Prerequisites
 
 If you were to follow this article please make sure to have the following prerequisites met before continuing.
 
@@ -23,7 +23,7 @@ If you were to follow this article please make sure to have the following prereq
     sudo dnf -y install bind bind-utils
   ```
 
-### Setup
+## Setup
 
 There are two folders :
 
@@ -31,7 +31,7 @@ There are two folders :
 2. named
 
 
-#### Deploy and start Openshift Origin 
+### Deploy and start Openshift Origin 
 
 Change directory to **origin** and run the following command:
 
@@ -39,7 +39,7 @@ Change directory to **origin** and run the following command:
 ansible-playbook -K origin.yml
 ```
 
-#### Configure and start named service
+### Configure and start named service
 
 Understand what **named.conf** is and has before proceeding further. You can customize it however you want.  The idea here is to resolve `*.cluster.local` to `127.0.0.1` as that is where the Openshift Origin's HAProxy router is bound to and will process the necessary forwarding to the right POD.
 
