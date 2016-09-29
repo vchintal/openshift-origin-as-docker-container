@@ -1,0 +1,14 @@
+$TTL    1d
+cluster.local.  IN    SOA   ns.cluster.local. support.cluster.local.com. (
+    2010031500 ; se = serial number
+    3h         ; ref = refresh
+    15m        ; ret = update retry
+    3w         ; ex = expiry
+    3h         ; min = minimum
+    )
+
+    IN    NS    ns.cluster.local.
+
+; private hosts
+ns         IN    A    127.0.0.1 
+*      	   IN 	 A    127.0.0.1 

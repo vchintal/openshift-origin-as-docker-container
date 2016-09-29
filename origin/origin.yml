@@ -1,0 +1,24 @@
+- hosts: localhost
+  tasks:
+    - name: Create Openshift Origin docker container 
+      become: true
+      docker_container:
+        name: origin
+        image: openshift/origin
+        privileged: true
+        network_mode: host
+        pid_mode: host
+        command: "start"
+        volumes:
+          - /:/rootfs:ro
+          - /var/run:/var/run:rw
+          - /sys:/sys
+          - /var/lib/docker:/var/lib/docker:rw
+          - /var/lib/origin/openshift.local.volumes:/var/lib/origin/openshift.local.volumes
+    - pause: seconds=10
+    - name: Copy the setup script into the origin container
+      become: true  
+      shell: docker cp setup.sh origin:/var/lib/origin/setup.sh 
+    - name: Execute the script in the docker container
+      become: true
+      shell: docker exec origin bash -l -c "/var/lib/origin/setup.sh > /var/lib/origin/setup.log"
